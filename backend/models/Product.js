@@ -15,13 +15,45 @@ const productSchema = mongoose.Schema(
       required: true,
       default: 0,
     },
+    bitcoinPrice: {
+      type: String,
+      required: true,
+    },
     category: {
       type: String,
       required: true,
+      enum: ['business_cards', 'flyers', 'brochures', 'posters', 'stickers', 'other'],
     },
     image: {
       type: String,
       required: false,
+    },
+    specifications: {
+      type: Object,
+      required: false,
+      default: {},
+    },
+    customizationOptions: [{
+      name: String,
+      options: [String],
+      priceModifier: Number,
+    }],
+    stockQuantity: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    shippingInfo: {
+      weight: Number,
+      dimensions: {
+        length: Number,
+        width: Number,
+        height: Number,
+      },
+      estimatedDeliveryDays: {
+        type: Number,
+        default: 14,
+      },
     },
   },
   {
